@@ -1,34 +1,23 @@
-# boilerplates
+# jstransformer-nunjucks
 
-This is a boilerplate for new transformers.
+[Nunjucks](http://mozilla.github.io/nunjucks/) support for [JSTransformers](http://github.com/jstransformers).
 
-What you need to do:
-
-1. Add your name to `LICENSE.md` and `package.json`
-2. Activate Travis CI and Coveralls.
-3. Update module name in `package.json` and `README.md`
-4. Let the fun begin!
-
-# jstransformer-foo
-
-[Foo](http://example.com) support for [JSTransformers](http://github.com/jstransformers).
-
-[![Build Status](https://img.shields.io/travis/jstransformers/jstransformer-foo/master.svg)](https://travis-ci.org/jstransformers/jstransformer-foo)
-[![Coverage Status](https://img.shields.io/coveralls/jstransformers/jstransformer-foo/master.svg)](https://coveralls.io/r/jstransformers/jstransformer-foo?branch=master)
-[![Dependency Status](https://img.shields.io/david/jstransformers/jstransformer-foo/master.svg)](http://david-dm.org/jstransformers/jstransformer-foo)
-[![NPM version](https://img.shields.io/npm/v/jstransformer-foo.svg)](https://www.npmjs.org/package/jstransformer-foo)
+[![Build Status](https://img.shields.io/travis/jstransformers/jstransformer-nunjucks/master.svg)](https://travis-ci.org/jstransformers/jstransformer-nunjucks)
+[![Coverage Status](https://img.shields.io/coveralls/jstransformers/jstransformer-nunjucks/master.svg)](https://coveralls.io/r/jstransformers/jstransformer-nunjucks?branch=master)
+[![Dependency Status](https://img.shields.io/david/jstransformers/jstransformer-nunjucks/master.svg)](http://david-dm.org/jstransformers/jstransformer-nunjucks)
+[![NPM version](https://img.shields.io/npm/v/jstransformer-nunjucks.svg)](https://www.npmjs.org/package/jstransformer-nunjucks)
 
 ## Installation
 
-    npm install jstransformer-foo
+    npm install jstransformer-nunjucks
 
 ## API
 
 ```js
-var foo = require('jstransformer')(require('jstransformer-foo'))
+var nunjucks = require('jstransformer')(require('jstransformer-nunjucks'))
 
-foo.render('blah').body
-//=> 'blah'
+nunjucks.render('Hello {{ name }}!', {name: 'World'}).body
+//=> 'Hello World!'
 ```
 
 ## License
