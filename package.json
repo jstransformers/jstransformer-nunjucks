@@ -1,7 +1,11 @@
 {
   "name": "jstransformer-nunjucks",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Nunjucks support for JSTransformers.",
+  "dependencies": {
+    "nunjucks": "^1.3.4",
+    "promise": "^7.0.3"
+  },
   "keywords": [
     "jstransformer"
   ],
@@ -19,10 +23,9 @@
     "type": "git",
     "url": "https://github.com/jstransformers/jstransformer-nunjucks.git"
   },
-  "author": "Rob Loach <robloach@gmail.com>",
-  "license": "MIT",
-  "dependencies": {
-    "nunjucks": "^1.3.4",
-    "promise": "^7.0.3"
-  }
+  "author": {
+    "name": "JSTransformers Team",
+    "url": "http://github.com/orgs/jstransformers/people"
+  },
+  "license": "MIT"
 }
