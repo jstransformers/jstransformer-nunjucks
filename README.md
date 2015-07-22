@@ -16,8 +16,8 @@
 ```js
 var nunjucks = require('jstransformer')(require('jstransformer-nunjucks'))
 
-nunjucks.render('Hello {{ name }}!', {name: 'World'}).body
-//=> 'Hello World!'
+nunjucks.render('Hello, {{ name }}!', {name: 'World'}).body
+//=> 'Hello, World!'
 ```
 
 ## License
