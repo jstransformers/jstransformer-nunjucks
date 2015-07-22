@@ -21,9 +21,7 @@ exports.outputFormat = 'html';
 exports.compile = function (str, options) {
   var env = getEnvironment(options)
   var tmpl = new Template(str, env, true)
-  return function (locals) {
-    return tmpl.render(locals)
-  }
+  return tmpl.render.bind(tmpl)
 }
 
 exports.compileAsync = function (str, options) {
