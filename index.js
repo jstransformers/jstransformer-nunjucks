@@ -18,19 +18,26 @@ function getEnvironment (options) {
 exports.name = 'nunjucks';
 exports.outputFormat = 'html';
 
-exports.render = function (str, options, locals) {
+exports.compile = function (str, options) {
   var env = getEnvironment(options)
-  return env.renderString(str, locals)
+  var tmpl = new Template(str, env, true)
+  return tmpl.render.bind(tmpl)
 }
 
-exports.renderAsync = function (str, options, locals) {
-  var env = getEnvironment(options)
-  return new Promise(function (fulfill, reject) {
-    env.renderString(str, locals, function (err, res) {
-      if (err) {
-        return reject(err)
-      }
-      fulfill(res)
+exports.compileAsync = function (str, options) {
+  return new Promise(function (resolve, reject) {
+    var env = getEnvironment(options)
+    var tmpl = new Template(str, env, true)
+    resolve(function (locals) {
+      return new Promise(function (done, fail) {
+        tmpl.render(locals, function (err, result) {
+          if (err) {
+            fail(err)
+          } else {
+            done(result)
+          }
+        })
+      })
     })
   })
 }
