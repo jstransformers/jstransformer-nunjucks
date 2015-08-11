@@ -1,36 +1,28 @@
 'use strict';
 
-var nunjucks = require('nunjucks')
-var Promise = require('promise')
-var Environment = nunjucks.Environment
-var Template = nunjucks.Template
-
-function getEnvironment (options) {
-  var loader = null;
-  if (options.searchPath) {
-    loader = new nunjucks.FileSystemLoader(options.searchPath, true)
-    delete options.searchPath
-  }
-  var loaders = loader ? [loader] : null
-  return new Environment(loaders, options)
-}
+var nunjucks = require('nunjucks');
+var extend = require('extend-shallow');
+var path = require('path');
 
 exports.name = 'nunjucks';
 exports.outputFormat = 'html';
 
-exports.render = function (str, options, locals) {
-  var env = getEnvironment(options)
-  return env.renderString(str, locals)
-}
+var defaults = {
+  watch: false
+};
 
-exports.renderAsync = function (str, options, locals) {
-  var env = getEnvironment(options)
-  return new Promise(function (fulfill, reject) {
-    env.renderString(str, locals, function (err, res) {
-      if (err) {
-        return reject(err)
-      }
-      fulfill(res)
-    })
-  })
-}
+exports.compile = function (str, options) {
+  var opts = extend({}, defaults, options);
+  var optspath = options.path || options.filename ? path.dirname(options.filename) : null;
+  var env = null;
+  if (optspath) {
+    env = nunjucks.configure(optspath, opts);
+  }
+  else {
+    env = nunjucks.configure(opts);
+  }
+  var template = nunjucks.compile(str, env, options.filename || null, true);
+  return function (locals) {
+    return template.render(locals);
+  };
+};
