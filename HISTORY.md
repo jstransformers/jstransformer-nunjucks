@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.1: 2015-08-10
+
+- Added filter support
+
 ## v0.1.0: 2015-08-10
 
 - Switched to `.compile`
