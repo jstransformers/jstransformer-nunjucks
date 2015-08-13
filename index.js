@@ -1,7 +1,7 @@
 'use strict';
 
 var nunjucks = require('nunjucks');
-var merge = require('merge-deep');
+var extend = require('extend-shallow');
 var path = require('path');
 
 exports.name = 'nunjucks';
@@ -10,7 +10,7 @@ exports.outputFormat = 'html';
 
 exports.compile = function (str, options) {
   // Prepare the options.
-  var opts = merge({watch: false}, options);
+  var opts = extend({watch: false}, options);
 
   // Find the path for which the environment will be created.
   var envpath = opts.path || opts.filename ? path.dirname(opts.filename) : null;

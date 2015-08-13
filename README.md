@@ -1,6 +1,6 @@
 # jstransformer-nunjucks
 
-[Nunjucks](http://mozilla.github.io/nunjucks/) support for [JSTransformers](http://github.com/jstransformers)
+[Nunjucks](http://mozilla.github.io/nunjucks/) support for [JSTransformers](http://github.com/jstransformers).
 
 [![Build Status](https://img.shields.io/travis/jstransformers/jstransformer-nunjucks/master.svg)](https://travis-ci.org/jstransformers/jstransformer-nunjucks)
 [![Coverage Status](https://img.shields.io/coveralls/jstransformers/jstransformer-nunjucks/master.svg)](https://coveralls.io/r/jstransformers/jstransformer-nunjucks?branch=master)

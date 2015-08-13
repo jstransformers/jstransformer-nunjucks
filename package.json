@@ -3,7 +3,7 @@
   "version": "0.1.2",
   "description": "Nunjucks support for JSTransformers",
   "dependencies": {
-    "merge-deep": "^2.0.0",
+    "extend-shallow": "^2.0.1",
     "nunjucks": "^1.3.4"
   },
   "keywords": [
