@@ -39,7 +39,7 @@ exports.compile = function (str, options) {
 
   // Compile the template.
   var template = nunjucks.compile(str, env, opts.filename || null, true);
-  return function (locals) {
-    return template.render(locals);
-  };
+
+  // Bind the render function as the returning function.
+  return template.render.bind(template)
 };
