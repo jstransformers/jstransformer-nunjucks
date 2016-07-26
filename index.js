@@ -5,6 +5,7 @@ var extend = require('extend-shallow');
 var path = require('path');
 
 exports.name = 'nunjucks';
+exports.inputFormats = ['njk', 'nunjucks'];
 exports.outputFormat = 'html';
 
 exports.compile = function (str, options) {
