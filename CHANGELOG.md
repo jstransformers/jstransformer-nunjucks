@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## 0.3.0 - 2016-11-05
+- Updated to `nunjucks@^3.0.0`
+
 ## 0.2.0 - 2015-09-03
 - Updated dependencies
 
