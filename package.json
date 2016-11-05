@@ -4,7 +4,7 @@
   "description": "Nunjucks support for JSTransformers",
   "dependencies": {
     "extend-shallow": "^2.0.1",
-    "nunjucks": "^2.0.0"
+    "nunjucks": "^3.0.0"
   },
   "keywords": [
     "jstransformer",
