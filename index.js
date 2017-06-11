@@ -39,6 +39,11 @@ exports.compile = function (str, options) {
     }
   }
 
+  // Configure the root directory, if needed.
+  if (options.root) {
+    nunjucks.configure(options.root);
+  }
+
   // Compile the template.
   const template = nunjucks.compile(str, env, opts.filename || null, true)
 
