@@ -41,7 +41,9 @@ exports.compile = function (str, options) {
 
   // Add all the Globals.
   for (const name in opts.globals || {}) {
-    env.addGlobal(name, opts.globals[name])
+    if (opts.globals[name] !== null) {
+      env.addGlobal(name, opts.globals[name])
+    }
   }
 
   // Compile the template.
