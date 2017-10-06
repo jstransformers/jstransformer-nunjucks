@@ -38,10 +38,10 @@ exports.compile = function (str, options) {
       env.addFilter(name, filter)
     }
   }
-  
+
   // Add all the Globals.
-  for (var name in opts.globals || {}) {
-    env.addGlobal(name, opts.globals[name]);
+  for (const name in opts.globals || {}) {
+    env.addGlobal(name, opts.globals[name])
   }
 
   // Compile the template.
