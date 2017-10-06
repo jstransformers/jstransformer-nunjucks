@@ -38,6 +38,11 @@ exports.compile = function (str, options) {
       env.addFilter(name, filter)
     }
   }
+  
+  // Add all the Globals.
+  for (var name in opts.globals || {}) {
+    env.addGlobal(name, opts.globals[name]);
+  }
 
   // Compile the template.
   const template = nunjucks.compile(str, env, opts.filename || null, true)
