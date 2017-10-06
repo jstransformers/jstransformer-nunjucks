@@ -13,7 +13,7 @@ exports.compile = function (str, options) {
   const opts = extend({watch: false}, options)
 
   // Find the path for which the environment will be created.
-  const envpath = opts.root || opts.path || opts.filename ? path.dirname(opts.filename) : null
+  const envpath = opts.root || opts.path || (opts.filename ? path.dirname(opts.filename) : null)
   let env = null
   if (envpath) {
     env = nunjucks.configure(envpath, opts)
