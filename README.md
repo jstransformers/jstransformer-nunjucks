@@ -1,7 +1,5 @@
 # jstransformer-nunjucks
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/jstransformers/jstransformer-nunjucks.svg)](https://greenkeeper.io/)
-
 [Nunjucks](http://mozilla.github.io/nunjucks/) support for [JSTransformers](http://github.com/jstransformers).
 
 [![Build Status](https://img.shields.io/travis/jstransformers/jstransformer-nunjucks/master.svg)](https://travis-ci.org/jstransformers/jstransformer-nunjucks)
