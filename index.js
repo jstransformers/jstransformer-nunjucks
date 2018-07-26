@@ -38,6 +38,24 @@ exports.compile = function (str, options) {
       env.addFilter(name, filter)
     }
   }
+  
+  // Add all the Extensions.
+  for (const name in opts.extensions || {}) {
+    if ({}.hasOwnProperty.call(opts.extensions, name)) {
+      let extension = null
+      switch (typeof opts.extensions[name]) {
+        case 'string':
+          // eslint-disable-next-line import/no-dynamic-require
+          extension = require(opts.extensions[name])
+          break
+        case 'function':
+        default:
+        extension = opts.extensions[name]
+          break
+      }
+      env.addExtension(name, extension)
+    }
+  }
 
   // Add all the Globals.
   for (const name in opts.globals || {}) {
