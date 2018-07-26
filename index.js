@@ -38,7 +38,7 @@ exports.compile = function (str, options) {
       env.addFilter(name, filter)
     }
   }
-  
+
   // Add all the Extensions.
   for (const name in opts.extensions || {}) {
     if ({}.hasOwnProperty.call(opts.extensions, name)) {
@@ -50,7 +50,7 @@ exports.compile = function (str, options) {
           break
         case 'function':
         default:
-        extension = opts.extensions[name]
+          extension = opts.extensions[name]
           break
       }
       env.addExtension(name, extension)
