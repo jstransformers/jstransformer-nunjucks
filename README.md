@@ -54,6 +54,11 @@ Many of the API methods accept an `options` dictionary object. The following opt
   or as the name of a Node module (as a string).
   If you specify a module name, that module's default export will be used as the filter function.
   
+- **`extentions`**: A set of Nunjucks extentions to add.
+  The value of `extentions` should be a dictionary object where the keys are the extention names to use in the templates.
+  The dictionary values define the extention functions, either as JavaScript function objects,
+  or as the name of a Node module (as a string).
+  
 - **`globals`**: A set of [global variables](https://mozilla.github.io/nunjucks/api#addglobal) available to all templates.
   The value of `globals` is a dictionary object defining the keys and values of the global data properties.
   
