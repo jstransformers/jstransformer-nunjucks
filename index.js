@@ -27,7 +27,6 @@ exports.compile = function (str, options) {
       let filter = null
       switch (typeof opts.filters[name]) {
         case 'string':
-          // eslint-disable-next-line import/no-dynamic-require
           filter = require(opts.filters[name])
           break
         case 'function':
@@ -35,6 +34,7 @@ exports.compile = function (str, options) {
           filter = opts.filters[name]
           break
       }
+
       env.addFilter(name, filter)
     }
   }
@@ -45,7 +45,6 @@ exports.compile = function (str, options) {
       let extension = null
       switch (typeof opts.extensions[name]) {
         case 'string':
-          // eslint-disable-next-line import/no-dynamic-require
           extension = require(opts.extensions[name])
           break
         case 'function':
@@ -53,6 +52,7 @@ exports.compile = function (str, options) {
           extension = opts.extensions[name]
           break
       }
+
       env.addExtension(name, extension)
     }
   }
