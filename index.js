@@ -12,14 +12,7 @@ exports.compile = function (str, options) {
   // Prepare the options.
   const opts = extend({watch: false}, options)
 
-  // Find the path for which the environment will be created.
-  const envpath = opts.root || opts.path || (opts.filename ? path.dirname(opts.filename) : null)
-  let env = null
-  if (envpath) {
-    env = nunjucks.configure(envpath, opts)
-  } else {
-    env = nunjucks.configure(opts)
-  }
+  const env = nunjucksEnv(opts)
 
   // Add all the Filters.
   for (const name in opts.filters || {}) {
@@ -69,4 +62,24 @@ exports.compile = function (str, options) {
 
   // Bind the render function as the returning function.
   return template.render.bind(template)
+}
+
+function nunjucksEnv(opts) {
+  // Find the path for which the environment will be created.
+  const envpath = opts.root || opts.path || (opts.filename ? path.dirname(opts.filename) : null)
+  const {loaders} = opts
+  let env = null
+  if (loaders !== undefined) {
+    // Loaders are assumed to come configured with their own baseUrl set, so envpath is ignored here
+    env = new nunjucks.Environment(loaders, opts)
+    if (opts.express) {
+      env.express(opts.express)
+    }
+  } else if (envpath) {
+    env = nunjucks.configure(envpath, opts)
+  } else {
+    env = nunjucks.configure(opts)
+  }
+
+  return env
 }
