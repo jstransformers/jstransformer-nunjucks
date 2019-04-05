@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.0.0 - 2019-04-05
+- Add option to use custom Nunjucks loaders
+  - By @gijswijs
 
 ## 0.5.0 - 2017-10-06
 - Updated Boilerplate
