@@ -22,7 +22,7 @@ exports.compileAsync = function (str, options) {
   // Bind the render function as the returning function.
   const boundRenderFn = template.render.bind(template)
   // Return the render function as a promise. The callback will resolve the promise.
-  return Promise.denodeify(boundRenderFn)
+  return Promise.resolve(Promise.denodeify(boundRenderFn))
 }
 
 function compiledTemplate(str, options) {
