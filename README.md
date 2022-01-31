@@ -4,7 +4,6 @@
 
 [![Build Status](https://img.shields.io/travis/jstransformers/jstransformer-nunjucks/master.svg)](https://travis-ci.org/jstransformers/jstransformer-nunjucks)
 [![Coverage Status](https://img.shields.io/codecov/c/github/jstransformers/jstransformer-nunjucks/master.svg)](https://codecov.io/gh/jstransformers/jstransformer-nunjucks)
-[![Dependency Status](https://img.shields.io/david/jstransformers/jstransformer-nunjucks/master.svg)](http://david-dm.org/jstransformers/jstransformer-nunjucks)
 [![NPM version](https://img.shields.io/npm/v/jstransformer-nunjucks.svg)](https://www.npmjs.org/package/jstransformer-nunjucks)
 
 ## Installation
@@ -14,17 +13,22 @@
 ## API
 
 ```js
-var nunjucks = require('jstransformer')(require('jstransformer-nunjucks'))
+const jstransformer = require('jstransformer')
+const nunjucks = jstransformer(require('jstransformer-nunjucks'))
 
 nunjucks.render('Hello, {{ name }}!', {name: 'World'}).body
 //=> 'Hello, World!'
 
-var options = {
-    filters: { repeat: (s,n)=>(s.repeat(n||2)) }
+const options = {
+  filters: { repeat: (str, num) => str.repeat(n || 2) }
 };
-nunjucks.render('{{ "Hello, " | repeat(echoes + 1) }}{{ name }}!',
-                options,
-                {name: 'World', echoes: 2}).body
+
+nunjucks.render(
+  '{{ "Hello, " | repeat(echoes + 1) }}{{ name }}!',
+  options,
+  {name: 'World', echoes: 2}
+).body
+
 //=> 'Hello, Hello, Hello, World!'
 ```
 
