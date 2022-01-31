@@ -4,7 +4,7 @@
   "description": "Nunjucks support for JSTransformers",
   "dependencies": {
     "extend-shallow": "^3.0.2",
-    "nunjucks": "^3.0.0"
+    "nunjucks": "^3.2.3"
   },
   "keywords": [
     "jstransformer",
@@ -15,14 +15,14 @@
   ],
   "devDependencies": {
     "test-jstransformer": "^1.0.0",
-    "xo": "*"
+    "xo": "^0.47.0"
   },
   "scripts": {
     "test": "test-jstransformer",
     "posttest": "xo --space=2 --no-semicolon index.js"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=8.0.0"
   },
   "repository": {
     "type": "git",
@@ -32,5 +32,10 @@
     "name": "JSTransformers Team",
     "url": "http://github.com/orgs/jstransformers/people"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "xo": {
+    "rules": {
+      "unicorn/prefer-module": 0
+    }
+  }
 }

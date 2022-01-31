@@ -4,27 +4,49 @@ const path = require('path')
 const nunjucks = require('nunjucks')
 const extend = require('extend-shallow')
 
-exports.name = 'nunjucks'
-exports.inputFormats = ['njk', 'nunjucks']
-exports.outputFormat = 'html'
+function nunjucksEnv(options) {
+  // Find the path for which the environment will be created.
+  const envpath = options.root || options.path || (options.filename ? path.dirname(options.filename) : null)
+  const {loaders} = options
+  let env = null
+  if (loaders !== undefined) {
+    // Loaders are assumed to come configured with their own baseUrl set, so envpath is ignored here
+    env = new nunjucks.Environment(loaders, options)
+    if (options.express) {
+      env.express(options.express)
+    }
+  } else if (envpath) {
+    env = nunjucks.configure(envpath, options)
+  } else {
+    env = nunjucks.configure(options)
+  }
 
-exports.compile = function (str, options) {
+  return env
+}
+
+const transformer = {
+  name: 'nunjucks',
+  inputFormats: ['njk', 'nunjucks'],
+  outputFormat: 'html',
+}
+
+transformer.compile = function (source, options) {
   // Prepare the options.
-  const opts = extend({watch: false}, options)
+  options = extend({watch: false}, options)
 
-  const env = nunjucksEnv(opts)
+  const env = nunjucksEnv(options)
 
   // Add all the Filters.
-  for (const name in opts.filters || {}) {
-    if ({}.hasOwnProperty.call(opts.filters, name)) {
+  for (const name in options.filters || {}) {
+    if (Object.prototype.hasOwnProperty.call(options.filters, name)) {
       let filter = null
-      switch (typeof opts.filters[name]) {
+      switch (typeof options.filters[name]) {
         case 'string':
-          filter = require(opts.filters[name])
+          filter = require(options.filters[name])
           break
         case 'function':
         default:
-          filter = opts.filters[name]
+          filter = options.filters[name]
           break
       }
 
@@ -33,16 +55,16 @@ exports.compile = function (str, options) {
   }
 
   // Add all the Extensions.
-  for (const name in opts.extensions || {}) {
-    if ({}.hasOwnProperty.call(opts.extensions, name)) {
+  for (const name in options.extensions || {}) {
+    if (Object.prototype.hasOwnProperty.call(options.extensions, name)) {
       let extension = null
-      switch (typeof opts.extensions[name]) {
+      switch (typeof options.extensions[name]) {
         case 'string':
-          extension = require(opts.extensions[name])
+          extension = require(options.extensions[name])
           break
         case 'function':
         default:
-          extension = opts.extensions[name]
+          extension = options.extensions[name]
           break
       }
 
@@ -51,35 +73,17 @@ exports.compile = function (str, options) {
   }
 
   // Add all the Globals.
-  for (const name in opts.globals || {}) {
-    if (opts.globals[name] !== null) {
-      env.addGlobal(name, opts.globals[name])
+  for (const name in options.globals || {}) {
+    if (options.globals[name] !== null) {
+      env.addGlobal(name, options.globals[name])
     }
   }
 
   // Compile the template.
-  const template = nunjucks.compile(str, env, opts.filename || null, true)
+  const template = nunjucks.compile(source, env, options.filename || null, true)
 
   // Bind the render function as the returning function.
   return template.render.bind(template)
 }
 
-function nunjucksEnv(opts) {
-  // Find the path for which the environment will be created.
-  const envpath = opts.root || opts.path || (opts.filename ? path.dirname(opts.filename) : null)
-  const {loaders} = opts
-  let env = null
-  if (loaders !== undefined) {
-    // Loaders are assumed to come configured with their own baseUrl set, so envpath is ignored here
-    env = new nunjucks.Environment(loaders, opts)
-    if (opts.express) {
-      env.express(opts.express)
-    }
-  } else if (envpath) {
-    env = nunjucks.configure(envpath, opts)
-  } else {
-    env = nunjucks.configure(opts)
-  }
-
-  return env
-}
+module.exports = transformer
