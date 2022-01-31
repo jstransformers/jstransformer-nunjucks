@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.1.0 - 2022-01-31
+- Updated Nunjucks 3.0.0 => 3.2.3 
+- Drop support for Node < 8.0.0
+- Restructure to conform to xo rules
+- Tidy up README.md
+
 ## 1.0.0 - 2019-04-05
 - Add option to use custom Nunjucks loaders
   - By @gijswijs
