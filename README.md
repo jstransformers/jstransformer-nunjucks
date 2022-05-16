@@ -2,7 +2,7 @@
 
 [Nunjucks](http://mozilla.github.io/nunjucks/) support for [JSTransformers](http://github.com/jstransformers).
 
-[![Build Status][ci_badge]][ci_url]
+[![Build Status][ci-badge]][ci-url]
 [![Coverage Status](https://img.shields.io/codecov/c/github/jstransformers/jstransformer-nunjucks/master.svg)](https://codecov.io/gh/jstransformers/jstransformer-nunjucks)
 [![NPM version](https://img.shields.io/npm/v/jstransformer-nunjucks.svg)](https://www.npmjs.org/package/jstransformer-nunjucks)
 
