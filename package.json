@@ -19,7 +19,7 @@
   },
   "scripts": {
     "test": "test-jstransformer",
-    "posttest": "xo --space=2 --no-semicolon index.js"
+    "lint": "xo --space=2 --no-semicolon index.js"
   },
   "engines": {
     "node": ">=8.0.0"
