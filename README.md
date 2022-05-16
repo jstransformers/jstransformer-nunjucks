@@ -2,7 +2,7 @@
 
 [Nunjucks](http://mozilla.github.io/nunjucks/) support for [JSTransformers](http://github.com/jstransformers).
 
-[![Build Status](https://img.shields.io/travis/jstransformers/jstransformer-nunjucks/master.svg)](https://travis-ci.org/jstransformers/jstransformer-nunjucks)
+[![Build Status][ci_badge]][ci_url]
 [![Coverage Status](https://img.shields.io/codecov/c/github/jstransformers/jstransformer-nunjucks/master.svg)](https://codecov.io/gh/jstransformers/jstransformer-nunjucks)
 [![NPM version](https://img.shields.io/npm/v/jstransformer-nunjucks.svg)](https://www.npmjs.org/package/jstransformer-nunjucks)
 
@@ -48,7 +48,7 @@ Many of the API methods accept an `options` dictionary object. The following opt
   Any import or include references to files outside this root directory will fail.
   Default is to use the parent directory of the `filename` path, if it is specified,
   or `null` (which causes Nunjucks to default to the current working directory).
-  
+
 - **`path`**: Alternative name for `root`.
 
 - **`filters`**: A set of [custom Nunjucks filters](https://mozilla.github.io/nunjucks/api#custom-filters) to add.
@@ -56,18 +56,21 @@ Many of the API methods accept an `options` dictionary object. The following opt
   The dictionary values define the filter functions, either as JavaScript function objects,
   or as the name of a Node module (as a string).
   If you specify a module name, that module's default export will be used as the filter function.
-  
+
 - **`extensions`**: A set of Nunjucks extensions to add.
   The value of `extensions` should be a dictionary object where the keys are the extension names to use in the templates.
   The dictionary values define the extension functions, either as JavaScript function objects,
   or as the name of a Node module (as a string).
-  
+
 - **`globals`**: A set of [global variables](https://mozilla.github.io/nunjucks/api#addglobal) available to all templates.
   The value of `globals` is a dictionary object defining the keys and values of the global data properties.
-  
+
  - Any other [options supported by Nunjuck's `configure` method](https://mozilla.github.io/nunjucks/api#configure).
 
 
 ## License
 
 MIT
+
+[ci-badge]: https://github.com/jstransformers/jstransformer-nunjucks/actions/workflows/test.yml/badge.svg
+[ci-url]: https://github.com/jstransformers/jstransformer-nunjucks/actions/workflows/test.yml
