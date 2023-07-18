@@ -1,6 +1,6 @@
 {
   "name": "jstransformer-nunjucks",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Nunjucks support for JSTransformers",
   "dependencies": {
     "nunjucks": "^3.2.4"

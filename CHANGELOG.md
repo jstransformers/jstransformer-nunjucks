@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.2.0 - 2023-07-18
+- Refactors filter, extension & globals resolution & addresses lint issues
+- Replaces legacy extend-shallow with Object.assign
+- Updated Nunjucks 3.2.3 => 3.2.4
+- Fixed typo in README badge
+
 ## 1.1.0 - 2022-01-31
 - Updated Nunjucks 3.0.0 => 3.2.3 
 - Drop support for Node < 8.0.0
