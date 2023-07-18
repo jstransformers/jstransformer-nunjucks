@@ -14,7 +14,7 @@
   ],
   "devDependencies": {
     "test-jstransformer": "^1.0.0",
-    "xo": "^0.47.0"
+    "xo": "^0.55.0"
   },
   "scripts": {
     "test": "test-jstransformer",
