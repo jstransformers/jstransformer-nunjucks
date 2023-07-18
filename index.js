@@ -2,7 +2,6 @@
 
 const path = require('path')
 const nunjucks = require('nunjucks')
-const extend = require('extend-shallow')
 
 function nunjucksEnv(options) {
   // Find the path for which the environment will be created.
@@ -32,7 +31,7 @@ const transformer = {
 
 transformer.compile = function (source, options) {
   // Prepare the options.
-  options = extend({watch: false}, options)
+  options = Object.assign({watch: false}, options)
 
   const env = nunjucksEnv(options)
 
