@@ -34,7 +34,8 @@
   "license": "MIT",
   "xo": {
     "rules": {
-      "unicorn/prefer-module": 0
+      "unicorn/prefer-module": 0,
+      "unicorn/prefer-node-protocol": 0
     }
   }
 }

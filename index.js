@@ -23,6 +23,18 @@ function nunjucksEnv(options) {
   return env
 }
 
+function withOption(objectOption, callback) {
+  const all = objectOption ? Object.entries(objectOption)
+    .map(([name, value]) => {
+      // The else clause is only valid for functions but older releases passed all but string
+      const resolved = typeof value === 'string' ? require(value) : value
+      return [name, resolved]
+    }) : []
+  for (const option of all) {
+    callback(option)
+  }
+}
+
 const transformer = {
   name: 'nunjucks',
   inputFormats: ['njk', 'nunjucks'],
@@ -35,47 +47,11 @@ transformer.compile = function (source, options) {
 
   const env = nunjucksEnv(options)
 
-  // Add all the Filters.
-  for (const name in options.filters || {}) {
-    if (Object.prototype.hasOwnProperty.call(options.filters, name)) {
-      let filter = null
-      switch (typeof options.filters[name]) {
-        case 'string':
-          filter = require(options.filters[name])
-          break
-        case 'function':
-        default:
-          filter = options.filters[name]
-          break
-      }
-
-      env.addFilter(name, filter)
-    }
-  }
-
-  // Add all the Extensions.
-  for (const name in options.extensions || {}) {
-    if (Object.prototype.hasOwnProperty.call(options.extensions, name)) {
-      let extension = null
-      switch (typeof options.extensions[name]) {
-        case 'string':
-          extension = require(options.extensions[name])
-          break
-        case 'function':
-        default:
-          extension = options.extensions[name]
-          break
-      }
-
-      env.addExtension(name, extension)
-    }
-  }
-
-  // Add all the Globals.
-  for (const name in options.globals || {}) {
-    if (options.globals[name] !== null) {
-      env.addGlobal(name, options.globals[name])
-    }
+  // Normalize/ resolve options & add them to nunjucks env
+  withOption(options.filters, ([name, filter]) => env.addFilter(name, filter))
+  withOption(options.extensions, ([name, ext]) => env.addExtension(name, ext))
+  for (const [name, global] of Object.entries(options.globals || {})) {
+    env.addGlobal(name, global)
   }
 
   // Compile the template.
